@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Peluches</title>
+    <link rel="stylesheet" href="{% static 'yourapp/styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'yourapp/img/welcome_index.png' %}" alt="Plush" width="45" height="45">
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Productos
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Peluches</a></li>
+            <li><a href="#">Almohadas</a></li>
+            <li><a href="#">Donaciones</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="#">Consultas</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <section id="products">
+        <h2>Nuestros Peluches</h2>
+        <div class="product-cards">
+            <!-- Example Card 1 -->
+            <div class="card">
+                <img src="{% static 'yourapp/img/plush_1_productos.png' %}" alt="Peluche 1">
+                <h3>Peluche 1</h3>
+                <p>Descripción del Peluche 1.</p>
+                <button>Añadir al Carrito</button>
+            </div>
+            <!-- Repeat similar cards for a total of 10 -->
+            <!-- Example Card 2 -->
+            <div class="card">
+                <img src="{% static 'yourapp/img/plush_2_productos.png' %}" alt="Peluche 2">
+                <h3>Peluche 2</h3>
+                <p>Descripción del Peluche 2.</p>
+                <button>Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+        </div>
+    </section>
+
+    <script src="{% static 'yourapp/script.js' %}"></script>
+</body>
+</html>

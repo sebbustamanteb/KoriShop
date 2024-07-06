@@ -1,0 +1,123 @@
+<!-- templates/pago.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Grand Hotel' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Tienda de Peluches</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/welcome_t_index.png' %}" alt="Plush" width="100" height="45">
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Productos
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'peluches' %}">Peluches</a></li>
+            <li><a href="{% url 'almohadas' %}">Almohadas</a></li>
+            <li><a href="{% url 'donaciones' %}">Donaciones</a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="{% url 'pago' %}">Pagar</a></li>
+        <li><a href="{% url 'sobre_nosotros' %}">Sobre nosotros</a></li>
+        <li><a href="{% url 'consultas' %}">Consultas</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="checkout">
+    <h2>Proceso de Pago</h2>
+    <form id="payment-form" method="post">
+        {% csrf_token %}
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="address">Dirección:</label>
+        <input type="text" id="address" name="address" required>
+        
+        <label for="payment">Método de Pago:</label>
+        <select id="payment" name="payment" required>
+            <option value="credit">Tarjeta de Crédito</option>
+            <option value="paypal">PayPal</option>
+            <option value="bank">Transferencia Bancaria</option>
+        </select>
+
+        <div id="card-element">
+          <!-- Elemento de Stripe -->
+        </div>
+        <div id="card-errors" role="alert"></div>
+        
+        <button type="submit">Pagar</button>
+    </form>
+  </section>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe('your_stripe_public_key');
+    var elements = stripe.elements();
+    
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '18px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      }
+    };
+
+    var card = elements.create('card', {style: style});
+    card.mount('#card-element');
+
+    card.on('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+
+    function stripeTokenHandler(token) {
+      var form = document.getElementById('payment-form');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+
+      // Submit the form
+      form.submit();
+    }
+  </script>
+</body>
+</html>

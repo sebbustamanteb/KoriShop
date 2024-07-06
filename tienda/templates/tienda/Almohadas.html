@@ -1,0 +1,82 @@
+<!-- templates/almohadas.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Grand Hotel' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <title>Tienda de Peluches</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/welcome_t_index.png' %}" alt="Plush" width="100" height="45"></a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Productos <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'peluches' %}">Peluches</a></li>
+                <li><a href="{% url 'almohadas' %}">Almohadas</a></li>
+                <li><a href="{% url 'donaciones' %}">Donaciones</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'pago' %}">Pagar</a></li>
+            <li><a href="{% url 'sobre_nosotros' %}">Sobre nosotros</a></li>
+            <li class="active"><a href="{% url 'consultas' %}">Consultas</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    <section id="products">
+        <h2>Nuestras Almohadas</h2>
+        <div class="product-cards">
+            <!-- Example Card 1 -->
+            <div class="card">
+                <img src="{% static 'img/plush_11_productos.png' %}" alt="Almohada 1">
+                <h3>Almohada 1</h3>
+                <button class="add-to-cart" data-product="Almohada 1">Añadir al Carrito</button>
+            </div>
+            <!-- Example Card 2 -->
+            <div class="card">
+                <img src="{% static 'img/plush_12_productos.png' %}" alt="Almohada 2">
+                <h3>Almohada 2</h3>
+                <button class="add-to-cart" data-product="Almohada 2">Añadir al Carrito</button>
+            </div>
+            <!-- Example Card 3 -->
+            <div class="card">
+                <img src="{% static 'img/plush_13_productos.png' %}" alt="Almohada 3">
+                <h3>Almohada 3</h3>
+                <button class="add-to-cart" data-product="Almohada 3">Añadir al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.getAttribute('data-product');
+                    addToCart(productName);
+                });
+            });
+
+            function addToCart(productName) {
+                console.log('Añadido al carrito:', productName);
+            }
+        });
+    </script>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Peluches</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Grand Hotel' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'yourapp/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/welcome_index.png' %}" alt="Plush" width="45" height="45">
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Productos
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'peluches' %}">Peluches</a></li>
+            <li><a href="{% url 'almohadas' %}">Almohadas</a></li>
+            <li><a href="{% url 'donaciones' %}">Donaciones</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'pago' %}">Pagar</a></li>
+        <li><a href="{% url 'sobre_nosotros' %}">Sobre nosotros</a></li>
+        <li><a href="{% url 'consultas' %}">Consultas</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="about">
+    <div class="container">
+      <h2>Sobre Nosotros</h2>
+      <p>
+        <strong>Bienvenidos a nuestra tienda de peluches, donde la ternura y la calidad se encuentran en cada uno de nuestros productos. Con más de 10 años de experiencia en el mercado, nos enorgullecemos de haber traído sonrisas a miles de familias y personas de todas las edades.</strong>
+      </p>
+      <p>
+        <strong>Desde nuestros humildes comienzos, hemos trabajado incansablemente para ofrecer una amplia gama de peluches que se destacan no solo por su suavidad y diseño, sino también por la alegría que traen a quienes los reciben. Cada peluche es cuidadosamente seleccionado y probado para asegurar que cumpla con nuestros altos estándares de calidad.</strong>
+      </p>
+      <p>
+        <strong>A lo largo de estos 10 años, hemos cultivado una base de clientes leales que confían en nosotros para sus necesidades de regalos y colecciones. Nuestro compromiso con la satisfacción del cliente es inquebrantable, y siempre nos esforzamos por superar sus expectativas con cada compra.</strong>
+      </p>
+      <p>
+        <strong>Nos enorgullece decir que hemos recibido numerosas reseñas positivas y testimonios de clientes satisfechos, quienes valoran no solo la calidad de nuestros productos, sino también nuestro excelente servicio al cliente. Ya sea que estés buscando el peluche perfecto para un regalo especial o simplemente quieras añadir un nuevo amigo a tu colección, estamos aquí para ayudarte.</strong>
+      </p>
+      <p>
+        <strong>Gracias por elegirnos y ser parte de nuestra historia. Esperamos seguir compartiendo nuestra pasión por los peluches contigo durante muchos años más.</strong>
+      </p>
+    </div>
+    <div class="container text-center">
+      <img src="{% static 'img/welcome_index.png' %}" alt="Bienvenida">
+    </div>
+  </section>
+
+  <script src="{% static 'yourapp/script.js' %}"></script>
+</body>
+</html>

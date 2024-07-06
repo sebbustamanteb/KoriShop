@@ -1,0 +1,138 @@
+<!-- templates/peluches.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Grand Hotel' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <title>Tienda de Peluches</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Archivo CSS estático -->
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/welcome_t_index.png' %}" alt="Plush" width="100" height="45">
+            </a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Productos
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'peluches' %}">Peluches</a></li>
+                <li><a href="{% url 'almohadas' %}">Almohadas</a></li>
+                <li><a href="{% url 'donaciones' %}">Donaciones</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'pago' %}">Pagar</a></li>
+            <li><a href="{% url 'sobre_nosotros' %}">Sobre nosotros</a></li>
+            <li><a href="{% url 'consultas' %}">Consultas</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    <section id="products">
+        <h2>Nuestros Peluches</h2>
+        <div class="product-cards">
+            <!-- Example Card 1 -->
+            <div class="card">
+                <img src="{% static 'img/plush_1_productos.png' %}" alt="Peluche 1">
+                <h3>Peluche 1</h3>
+                <button class="add-to-cart" data-product="Peluche 1">Añadir al Carrito</button>
+            </div>
+            <!-- Repeat similar cards for a total of 10 -->
+            <!-- Example Card 2 -->
+            <div class="card">
+                <img src="{% static 'img/plush_2_productos.png' %}" alt="Peluche 2">
+                <h3>Peluche 2</h3>
+                <button class="add-to-cart" data-product="Peluche 2">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 3 -->
+            <div class="card">
+                <img src="{% static 'img/plush_3_productos.png' %}" alt="Peluche 3">
+                <h3>Peluche 3</h3>
+                <button class="add-to-cart" data-product="Peluche 3">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 4 -->
+            <div class="card">
+                <img src="{% static 'img/plush_4_productos.png' %}" alt="Peluche 4">
+                <h3>Peluche 4</h3>
+                <button class="add-to-cart" data-product="Peluche 4">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 5 -->
+            <div class="card">
+                <img src="{% static 'img/plush_5_productos.png' %}" alt="Peluche 5">
+                <h3>Peluche 5</h3>
+                <button class="add-to-cart" data-product="Peluche 5">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 6 -->
+            <div class="card">
+                <img src="{% static 'img/plush_6_productos.png' %}" alt="Peluche 6">
+                <h3>Peluche 6</h3>
+                <button class="add-to-cart" data-product="Peluche 6">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 7 -->
+            <div class="card">
+                <img src="{% static 'img/plush_7_productos.png' %}" alt="Peluche 7">
+                <h3>Peluche 7</h3>
+                <button class="add-to-cart" data-product="Peluche 7">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 8 -->
+            <div class="card">
+                <img src="{% static 'img/plush_8_productos.png' %}" alt="Peluche 8">
+                <h3>Peluche 8</h3>
+                <button class="add-to-cart" data-product="Peluche 8">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 9 -->
+            <div class="card">
+                <img src="{% static 'img/plush_9_productos.png' %}" alt="Peluche 9">
+                <h3>Peluche 9</h3>
+                <button class="add-to-cart" data-product="Peluche 9">Añadir al Carrito</button>
+            </div>
+            <!-- Add more cards as needed -->
+            <!-- Example Card 10 -->
+            <div class="card">
+                <img src="{% static 'img/plush_10_productos.png' %}" alt="Peluche 10">
+                <h3>Peluche 10</h3>
+                <button class="add-to-cart" data-product="Peluche 10">Añadir al Carrito</button>
+            </div>
+        
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.getAttribute('data-product');
+                    addToCart(productName);
+                });
+            });
+
+            function addToCart(productName) {
+                console.log('Añadido al carrito:', productName);
+                // Aquí puedes implementar lógica adicional para agregar al carrito en el backend
+                // Por ejemplo, podrías enviar una solicitud AJAX a tu vista Django para manejar la lógica de carrito.
+            }
+        });
+    </script>
+
+    <script src="{% static 'script.js' %}"></script>  <!-- Archivo JavaScript estático -->
+</body>
+</html>
